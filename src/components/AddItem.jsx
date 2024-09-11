@@ -26,14 +26,15 @@ const AddItem = (props) => {
 
     return (
         <section className="add-item-section">
-            <h1>AddItem</h1>
+
+            
             <input 
                 id="item-input"
                 type="text" 
                 placeholder="Item" 
                 onChange={handleInputChange}
                 value={inputValue}/>
-            <button onClick={createNewItem}>Add</button>
+            <button onClick={createNewItem} className="add-button">Add</button>
         </section>
 
     )

@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+   text-align: center;
+}
+
+button {
+    border: none;
+    padding: 5px;
+}
+
+input {
+    padding: 5px;
+    width: 100%;
+}
+
+.add-button {
+    
+}
+
+
+.add-item-section{
+
+    display: flex;
+    justify-content: center;
+
+    padding-block: 10px;
+    
+}
+
+
+
+.container {
+    width: 100dvw;
+    
+    padding: 10px;
+
+}
+
+.list-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+   
+    gap: 10px;
+}
+
+.list-row{
+    display: flex;
+    width: 100%;
+
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid black;
+
+}
+
+.list-row p {
+    width: 100%;
+
+    padding: 10px;
+    
+}
+
+
+.done{
+    text-decoration: line-through;
+}
+

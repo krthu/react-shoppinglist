@@ -30,6 +30,7 @@ function App() {
 
   return (
     <div className='container'>
+      <h1>ShoppingList</h1>
       <AddItem addToList={addItemToList}/>
       <List 
         list={list}

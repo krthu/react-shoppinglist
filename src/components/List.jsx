@@ -1,7 +1,7 @@
 import ListItem from "./ListItem";
 
 const List = (props) => {
-console.log(props.list )
+    
     const items = props.list.map((item, index) => (
         <ListItem 
             item={item} 
