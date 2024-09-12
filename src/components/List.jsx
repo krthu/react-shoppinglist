@@ -1,7 +1,7 @@
 import ListItem from "./ListItem";
 
 const List = (props) => {
-    
+
     const items = props.list.map((item, index) => (
         <ListItem 
             item={item} 
@@ -9,6 +9,7 @@ const List = (props) => {
             toggleDone={props.toggleDone} 
             index={index}
             deleteItemFromList={props.deleteItemFromList}
+            editIndex={props.editIndex}
         />  
  ));
 

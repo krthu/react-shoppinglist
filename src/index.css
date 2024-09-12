@@ -11,6 +11,8 @@ h1 {
 button {
     border: none;
     padding: 5px;
+
+
 }
 
 input {
@@ -58,11 +60,14 @@ input {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    
 
 }
 
 .list-row p {
-    width: 100%;
+    flex-grow: 1;
 
     padding: 10px;
     
@@ -71,5 +76,23 @@ input {
 
 .done{
     text-decoration: line-through;
+}
+
+.delete-button{
+    align-self: stretch;
+
+    background-color: red;
+}
+
+.circle {
+    border: 1px solid black;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin: 5px;
+}
+
+.filled {
+    background-color: black;
 }
 

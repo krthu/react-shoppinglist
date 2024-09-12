@@ -8,9 +8,12 @@ const ListItem = (props) => {
 
     return(
         <section className="list-row">
-            
+            <div 
+            className={`circle ${props.item.done ? 'filled' : ''}`} 
+            onClick={ () => {props.toggleDone(props.index)}}>
 
-            <p className={`${props.item.done ? 'done' : ''}`} onClick={ () => {props.toggleDone(props.index)}}>{props.item.name}</p>
+            </div>
+            <p className={`${props.item.done ? 'done' : ''}`} onClick={() => props.editIndex(props.index)}>{props.item.name}</p>
             <button className='delete-button' onClick={() => props.deleteItemFromList(props.index)}>Delete</button>
         </section>
     )
