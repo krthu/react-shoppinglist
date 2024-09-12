@@ -54,14 +54,14 @@ function App() {
   useEffect(() =>{
     if (list !== null){
       localStorage.setItem('saved-items', JSON.stringify(list));
-      console.log(`items saved -> ${list}`)
+     // console.log(`items saved -> ${list}`)
     }
 
   },[list]);
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem('saved-items'));
-    console.log(`items-loaded -> ${savedItems}`)
+   // console.log(`items-loaded -> ${savedItems}`)
     if (savedItems){
       setList(savedItems);
     } else{
