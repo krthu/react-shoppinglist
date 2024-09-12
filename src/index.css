@@ -32,8 +32,16 @@ input {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding-block: 10px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-block: 20px;
     
+}
+
+#item-input {
+    border: none;
+    outline: none;
 }
 
 
@@ -84,6 +92,15 @@ main{
     align-self: stretch;
 
     background-color: red;
+}
+.circle-container{
+  
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10px;
+    border-right: 1px solid lightgrey;
 }
 
 .circle {

@@ -39,11 +39,13 @@ function App() {
   }
   
   const editItem = (editedItem, index) => {
+    console.log(editedItem)
     const updatedList = list.map((item, i) => {
       if(i === index) {
-        return{...item, ...editedItem};
+        return editedItem;
+      }else {
+       return item;
       }
-      return item;
     });
     setList(updatedList);
     toggleOverlay(null)
