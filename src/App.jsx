@@ -21,6 +21,7 @@ function App() {
   }
 
   const toggleDone = (index) => {
+    // Think about combining this and edit item to one function
 
     const updatedList = list.map((item, i) => {
       if (i === index) {
@@ -29,27 +30,43 @@ function App() {
       return item;
     })
     setList(updatedList);
+ 
 
   }
 
   const toggleOverlay = (index) => {
     setSelectedIndexForEdit(index)
-  } 
+  }
+  
+  const editItem = (editedItem, index) => {
+    const updatedList = list.map((item, i) => {
+      if(i === index) {
+        return{...item, ...editedItem};
+      }
+      return item;
+    });
+    setList(updatedList);
+    toggleOverlay(null)
+  }
 
   return (
     <div className='container'>
-      <h1>ShoppingList</h1>
-      <AddItem addToList={addItemToList}/>
-      <List 
-        list={list}
-        toggleDone={toggleDone}
-        deleteItemFromList={deleteItemFromList}
-        editIndex={toggleOverlay}
-      />
+      <main>
+        <h1>ShoppingList</h1>
+        <AddItem addToList={addItemToList}/>
+        <List 
+          list={list}
+          toggleDone={toggleDone}
+          deleteItemFromList={deleteItemFromList}
+          editIndex={toggleOverlay}
+        />
+      </main>
       {selectedIndexForEdit !== null && (
         <EditItem 
-          selectedItemForEdit={list[selectedIndexForEdit]}
+          item={list[selectedIndexForEdit]}
           index={selectedIndexForEdit}
+          toggleOverlay={toggleOverlay}
+          save={editItem}
 
         />
 

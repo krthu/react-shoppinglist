@@ -10,7 +10,7 @@ h1 {
 
 button {
     border: none;
-    padding: 5px;
+    padding: 10px 10px;
 
 
 }
@@ -21,7 +21,9 @@ input {
 }
 
 .add-button {
-    
+    background-color: green;
+    border-radius: 10px;
+
 }
 
 
@@ -29,7 +31,7 @@ input {
 
     display: flex;
     justify-content: center;
-
+    gap: 10px;
     padding-block: 10px;
     
 }
@@ -38,9 +40,9 @@ input {
 
 .container {
     width: 100dvw;
-    
+}
+main{
     padding: 10px;
-
 }
 
 .list-section {
@@ -95,4 +97,44 @@ input {
 .filled {
     background-color: black;
 }
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.overlay-content {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.button-section {
+    display: flex;
+    gap: 10px;
+}
+
+.button-section button{
+    border-radius: 10px;
+}
+
+.cancel-button {
+    border: 2px solid lightgray;
+    background-color: white;
+}
+
+
 
