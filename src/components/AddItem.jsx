@@ -10,7 +10,7 @@ const AddItem = (props) => {
 
 
     const createNewItem = () => {
-        if (inputValue === ''){
+        if (inputValue === '') {
             return
         }
         const item = {
@@ -27,18 +27,22 @@ const AddItem = (props) => {
     return (
         <section className="add-item-section">
 
-            
-            <input 
+
+            <input
                 id="item-input"
-                type="text" 
-                placeholder="Item" 
+                type="text"
+                placeholder="Item"
                 onChange={handleInputChange}
-                value={inputValue}/>
-            <button onClick={createNewItem} className="add-button">Add</button>
+                value={inputValue} />
+            <button onClick={createNewItem} className="add-button">
+                <span className="material-symbols-outlined">
+                add
+                </span>
+            </button>
         </section>
 
     )
-  
+
 }
 
 export default AddItem;
