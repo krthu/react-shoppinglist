@@ -14,9 +14,9 @@ const List = (props) => {
  ));
 
     return(
-        <section className="list-section">
+        <ul className="list-section">
             {items}
-        </section>
+        </ul>
     )
 }
 

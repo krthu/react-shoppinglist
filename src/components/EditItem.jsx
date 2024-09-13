@@ -34,8 +34,8 @@ const EditItem = (props) => {
             <input type="number" value={quantity} onChange={handleQuantityInputChange} placeholder="Quantity"/>
 
             <section className="button-section">
-                <button onClick={handleSave} className="add-button">Save</button>
-                <button onClick={() => props.toggleOverlay(null)} className="cancel-button">Cancel</button>
+                <button onClick={handleSave} className="add-button" disabled={name === ''}>Save</button>
+                <button onClick={() => props.toggleOverlay(null)} className="cancel-button" >Cancel</button>
             </section>
  
         </section>

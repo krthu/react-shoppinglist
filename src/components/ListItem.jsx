@@ -1,8 +1,5 @@
 const ListItem = (props) => {
 
-    // const toggleDone = () => {
-    //     props.toggleDone()
-    // }
 
     const getQuantity = () => {
         if (props.item.quantity){
@@ -11,21 +8,22 @@ const ListItem = (props) => {
             )
         }
     }
-
     return(
-        <section className="list-row">
+        <li className="list-row">
             <div 
             className="circle-container"
             onClick={ () => {props.toggleDone(props.index)}}
             >
-                <div 
-                className={`circle ${props.item.done ? 'filled' : ''}`} >
+                <span className="material-symbols-outlined" style={{color: props.item.done ? 'green' : 'black'}} >
+                    {props.item.done ? "task_alt" : "circle"}
 
-                </div>
+                </span>
             </div>
             <p className={`${props.item.done ? 'done' : ''}`} onClick={() => props.editIndex(props.index)}>{getQuantity()}{props.item.name}</p>
-            <button className='delete-button' onClick={() => props.deleteItemFromList(props.index)}>Delete</button>
-        </section>
+            <button className='delete-button' onClick={() => props.deleteItemFromList(props.index)}><span className="material-symbols-outlined">
+delete
+</span></button>
+        </li>
     )
 }
 
