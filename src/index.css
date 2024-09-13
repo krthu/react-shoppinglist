@@ -25,6 +25,12 @@ header {
     padding: 20px 10px;
 }
 
+header p {
+    background-color: aqua;
+    display: inline;    
+
+}
+
 h1 {
     font-size: 1.2rem;
 }
