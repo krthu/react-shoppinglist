@@ -6,109 +6,90 @@ import List from './components/List.jsx';
 import EditItem from './components/EditItem.jsx';
 
 function App() {
-  const [list, setList] = useState(null);
 
-  const [selectedIndexForEdit, setSelectedIndexForEdit] = useState(null);
+  const [lists, setLists] = useState(null);
+  const [currentListIndex, setCurrentListIndex] = useState(null)
+
+  const handelListChange = (newList) => {
+    const updatedLists = lists.map((list, i) => {
+      if (i === currentListIndex) {
+        return newList;
+      } else {
+        return list;
+      }
+    })
+    setLists(updatedLists);
+  }
+
+  const createNewList = () => {
+    const newList = []
+    setLists(prevLists => {
+      const updatedLists = [...prevLists, newList];
+      setCurrentListIndex(updatedLists.length - 1); // Sätter index till den nya listan
+      return updatedLists;
+    });
+  }
 
 
   const addItemToList = (item) => {
-    setList([...list, item])
+    const updatedList = [...lists[currentListIndex], item]
+    handelListChange(updatedList)
   }
 
-  const deleteItemFromList = (index) => {
-    const updatedList = list.filter((item, i) => index !== i)
-    setList(updatedList)
-  }
+  // const [list, setList] = useState(null);
 
-  const toggleDone = (index) => {
-    // Think about combining this and edit item to one function
+ 
 
-    const updatedList = list.map((item, i) => {
-      if (i === index) {
-        return { ...item, done: !item.done }
-      }
-      return item;
-    })
-    setList(updatedList);
+  // useEffect(() => {
+  //   if (list !== null) {
+  //     localStorage.setItem('saved-items', JSON.stringify(list));
+  //     // console.log(`items saved -> ${list}`)
+  //   }
 
+  // }, [list]);
 
-  }
+   useEffect(() => {
+     const savedItems = JSON.parse(localStorage.getItem('saved-items'));
+     // console.log(`items-loaded -> ${savedItems}`)
+     if (savedItems) {
+       setLists(savedItems);
+     } else {
+       setLists([])
+     }
 
-  const toggleOverlay = (index) => {
-    setSelectedIndexForEdit(index)
-  }
-
-  const editItem = (editedItem, index) => {
-
-    const updatedList = list.map((item, i) => {
-      if (i === index) {
-        return editedItem;
-      } else {
-        return item;
-      }
-    });
-    setList(updatedList);
-    toggleOverlay(null)
-  }
-
-  useEffect(() => {
-    if (list !== null) {
-      localStorage.setItem('saved-items', JSON.stringify(list));
-      // console.log(`items saved -> ${list}`)
-    }
-
-  }, [list]);
-
-  useEffect(() => {
-    const savedItems = JSON.parse(localStorage.getItem('saved-items'));
-    // console.log(`items-loaded -> ${savedItems}`)
-    if (savedItems) {
-      setList(savedItems);
-    } else {
-      setList([])
-    }
 
   }, [])
 
   return (
     <div className='container'>
 
-
-
-      {list !== null ? (
         <>
           <header>
           <h1>ShoppingList</h1>
+          <p onClick={createNewList}>Add list</p>
           </header>
 
           <main>
-            <List
-              list={list}
-              toggleDone={toggleDone}
-              deleteItemFromList={deleteItemFromList}
-              editIndex={toggleOverlay}
-            />
+            {currentListIndex !== null  && lists[currentListIndex] ? (
+              <List
+                list={lists[currentListIndex]}
+                listChanged={handelListChange}
+                // toggleDone={toggleDone}
+                // deleteItemFromList={deleteItemFromList}
+                // editIndex={toggleOverlay}
+              />
+            ) : (
+            <p>Loading....</p>
+          )}
           </main>
           <footer>
    
             <AddItem addToList={addItemToList} />
           </footer>
         </>
-      ) : (
-        <p>Loading....</p>
-      )}
 
 
-      {selectedIndexForEdit !== null && (
-        <EditItem
-          item={list[selectedIndexForEdit]}
-          index={selectedIndexForEdit}
-          toggleOverlay={toggleOverlay}
-          save={editItem}
 
-        />
-
-      )}
 
     </div>
 
