@@ -58,11 +58,13 @@ function App() {
      console.log(`Parsed items:`, savedItems);
      if (savedItems && savedItems.length > 0) {
        setLists(savedItems);
+       setCurrentListIndex(savedItems.length - 1);
      } else {
       const defaultList = [{ name: 'list', items: [] }];
        setLists(defaultList);
+       setCurrentListIndex(0);
      }
-     setCurrentListIndex(savedItems.length - 1);
+   
 
 
   }, [])
