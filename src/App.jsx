@@ -4,6 +4,7 @@ import AddItem from './components/AddItem.jsx'
 import './App.css'
 import List from './components/List.jsx';
 import EditItem from './components/EditItem.jsx';
+import DropdownSelector from './components/DropDownSelector.jsx';
 
 function App() {
 
@@ -39,8 +40,14 @@ function App() {
     handelListChange(updatedList)
   }
 
-  // const [list, setList] = useState(null);
 
+
+  // const [list, setList] = useState(null);
+  const viewOtherList = (item) => {
+    const listIndex = lists.findIndex(list => list.name === item.name);
+    setCurrentListIndex(listIndex)
+    console.log("New list is" + listIndex)
+  }
  
 
   useEffect(() => {
@@ -69,24 +76,34 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    console.log("Current list index changed to:", currentListIndex);
+  }, [currentListIndex]);
+  
+
   return (
     <div className='container'>
 
         <>
           <header>
+            
             <h1>ShoppingList</h1>
+            <section className='choose-list-section'>
             <p onClick={createNewList}>Add list</p>
             {currentListIndex !== null  && lists[currentListIndex] ?
             
-            (<p>{lists[currentListIndex].name}</p>)
+            // (<p>{lists[currentListIndex].name}</p>)
+            <DropdownSelector list={lists} startIndex={currentListIndex} onSelect={viewOtherList}/>
             :
             (<p></p>)
             }
+            </section>
           </header>
 
           <main>
             {currentListIndex !== null  && lists[currentListIndex] ? (
               <List
+                key={currentListIndex}
                 list={lists[currentListIndex].items}
                 listChanged={handelListChange}
                 // toggleDone={toggleDone}
