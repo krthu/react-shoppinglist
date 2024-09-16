@@ -14,7 +14,7 @@ function App() {
   const handelListChange = (newItems) => {
     const updatedLists = lists.map((list, i) => {
       if (i === currentListIndex) {
-        return {...list, items: newItems};
+        return { ...list, items: newItems };
       } else {
         return list;
       }
@@ -48,7 +48,7 @@ function App() {
     setCurrentListIndex(listIndex)
     console.log("New list is" + listIndex)
   }
- 
+
 
   useEffect(() => {
     if (lists !== null) {
@@ -58,20 +58,20 @@ function App() {
 
   }, [lists]);
 
-   useEffect(() => {
-     const savedItems = JSON.parse(localStorage.getItem('saved-items'));
-     console.log(`items-loaded -> ${savedItems}`)
-   
-     console.log(`Parsed items:`, savedItems);
-     if (savedItems && savedItems.length > 0) {
-       setLists(savedItems);
-       setCurrentListIndex(savedItems.length - 1);
-     } else {
+  useEffect(() => {
+    const savedItems = JSON.parse(localStorage.getItem('saved-items'));
+    console.log(`items-loaded -> ${savedItems}`)
+
+    console.log(`Parsed items:`, savedItems);
+    if (savedItems && savedItems.length > 0) {
+      setLists(savedItems);
+      setCurrentListIndex(savedItems.length - 1);
+    } else {
       const defaultList = [{ name: 'list', items: [] }];
-       setLists(defaultList);
-       setCurrentListIndex(0);
-     }
-   
+      setLists(defaultList);
+      setCurrentListIndex(0);
+    }
+
 
 
   }, [])
@@ -79,46 +79,46 @@ function App() {
   useEffect(() => {
     console.log("Current list index changed to:", currentListIndex);
   }, [currentListIndex]);
-  
+
 
   return (
     <div className='container'>
 
-        <>
-          <header>
-            
-            <h1>ShoppingList</h1>
-            <section className='choose-list-section'>
-            <p onClick={createNewList}>Add list</p>
-            {currentListIndex !== null  && lists[currentListIndex] ?
-            
-            // (<p>{lists[currentListIndex].name}</p>)
-            <DropdownSelector list={lists} startIndex={currentListIndex} onSelect={viewOtherList}/>
-            :
-            (<p></p>)
-            }
-            </section>
-          </header>
+      <>
+        <header>
 
-          <main>
-            {currentListIndex !== null  && lists[currentListIndex] ? (
-              <List
-                key={currentListIndex}
-                list={lists[currentListIndex].items}
-                listChanged={handelListChange}
-                // toggleDone={toggleDone}
-                // deleteItemFromList={deleteItemFromList}
-                // editIndex={toggleOverlay}
-              />
-            ) : (
+          <h1>ShoppingList</h1>
+   
+            <p onClick={createNewList} className='add-list-button'>New List</p>
+            {currentListIndex !== null && lists[currentListIndex] ?
+
+
+              <DropdownSelector list={lists} startIndex={currentListIndex} onSelect={viewOtherList} />
+              :
+              (<p></p>)
+            }
+
+        </header>
+
+        <main>
+          {currentListIndex !== null && lists[currentListIndex] ? (
+            <List
+              key={currentListIndex}
+              list={lists[currentListIndex].items}
+              listChanged={handelListChange}
+            // toggleDone={toggleDone}
+            // deleteItemFromList={deleteItemFromList}
+            // editIndex={toggleOverlay}
+            />
+          ) : (
             <p>Loading....</p>
           )}
-          </main>
-          <footer>
-   
-            <AddItem addToList={addItemToList} />
-          </footer>
-        </>
+        </main>
+        <footer>
+
+          <AddItem addToList={addItemToList} />
+        </footer>
+      </>
 
 
 

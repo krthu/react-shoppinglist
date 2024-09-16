@@ -1,8 +1,5 @@
 /* Style for the dropdown container */
-.dropdown-container {
-    position: relative;
-  
-  }
+
   
   /* Style for the dropdown toggle button */
   .dropdown-toggle {
@@ -35,6 +32,8 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    position: relative;
+    
     
   }
 

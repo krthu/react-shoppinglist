@@ -32,10 +32,14 @@ const DropdownSelector = ({ list, startIndex, onSelect }) => {
         onSelect(item, index)
     };
 
+    const handleItemNameClick = () => {
+        console.log('Bring up overlay!')
+    }
+
     return (
         <div className="dropdown-container">
-            <div onClick={toggleDropdown} className="dropwDown">
-                <h2>{selectedList.name}</h2>
+            <div  className="dropwDown">
+                <h2 onClick={handleItemNameClick}>{selectedList.name}</h2>
             </div>
 
             {showDropdown && (
@@ -47,7 +51,7 @@ const DropdownSelector = ({ list, startIndex, onSelect }) => {
 
             }
 
-            <span class="material-symbols-outlined dropdown-toggle">
+            <span className="material-symbols-outlined dropdown-toggle" onClick={toggleDropdown}>
                 arrow_downward
             </span>
 

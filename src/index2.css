@@ -156,5 +156,10 @@ main{
     background-color: white;
 }
 
+.choose-list-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
