@@ -3,7 +3,6 @@ import AddItem from './components/AddItem.jsx'
 
 import './App.css'
 import List from './components/List.jsx';
-import EditItem from './components/EditItem.jsx';
 import DropdownSelector from './components/DropDownSelector.jsx';
 
 function App() {
@@ -29,7 +28,7 @@ function App() {
     };
     setLists(prevLists => {
       const updatedLists = [...prevLists, newList];
-      setCurrentListIndex(updatedLists.length - 1); // Sätter index till den nya listan
+      setCurrentListIndex(updatedLists.length - 1);
       return updatedLists;
     });
   }
@@ -40,20 +39,41 @@ function App() {
     handelListChange(updatedList)
   }
 
-
-
-  // const [list, setList] = useState(null);
   const viewOtherList = (item) => {
     const listIndex = lists.findIndex(list => list.name === item.name);
     setCurrentListIndex(listIndex)
     console.log("New list is" + listIndex)
   }
 
+  const handleEditList = (oldList, newName) => {
+    const updatedLists = lists.map((list, index) => {
+      if (currentListIndex === index){
+        return {...list, name: newName};
+      } else {
+        return list;
+      }
+    })
+    setLists(updatedLists);
+
+  }
+
+  const deleteActiveList = () => {
+
+
+    const newLists = [
+      ...lists.slice(0, currentListIndex),
+      ...lists.slice(currentListIndex + 1)
+    ];
+    setLists(newLists);
+    console.log(newLists);
+    setCurrentListIndex(newLists.length -1)
+    
+  }
 
   useEffect(() => {
     if (lists !== null) {
       localStorage.setItem('saved-items', JSON.stringify(lists));
-      // console.log(`items saved -> ${list}`)
+       console.log(`items saved -> ${lists}`)
     }
 
   }, [lists]);
@@ -71,9 +91,6 @@ function App() {
       setLists(defaultList);
       setCurrentListIndex(0);
     }
-
-
-
   }, [])
 
   useEffect(() => {
@@ -91,9 +108,13 @@ function App() {
    
             <p onClick={createNewList} className='add-list-button'>New List</p>
             {currentListIndex !== null && lists[currentListIndex] ?
-
-
-              <DropdownSelector list={lists} startIndex={currentListIndex} onSelect={viewOtherList} />
+              <DropdownSelector 
+                list={lists} 
+                startIndex={currentListIndex} 
+                onSelect={viewOtherList} 
+                editItemSave={handleEditList}
+                deleteList={deleteActiveList}
+                />
               :
               (<p></p>)
             }
@@ -106,9 +127,7 @@ function App() {
               key={currentListIndex}
               list={lists[currentListIndex].items}
               listChanged={handelListChange}
-            // toggleDone={toggleDone}
-            // deleteItemFromList={deleteItemFromList}
-            // editIndex={toggleOverlay}
+
             />
           ) : (
             <p>Loading....</p>
@@ -119,9 +138,6 @@ function App() {
           <AddItem addToList={addItemToList} />
         </footer>
       </>
-
-
-
 
     </div>
 

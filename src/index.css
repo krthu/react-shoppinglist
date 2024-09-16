@@ -104,10 +104,16 @@ button{
     font-size: 1rem;
     border: none;
     min-height: 50px;
+    border-radius: 10px;
 }
 
 .delete-button{
     background-color: red;
+
+}
+
+.list-row .delete-button {
+    border-radius: 0 20px 20px 0;
 }
 
 .circle-container{
