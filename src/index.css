@@ -23,6 +23,16 @@ html, body {
 header {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+header p {
+
+
+    align-self: flex-end;
+  
+
 }
 
 h1 {
@@ -90,14 +100,20 @@ main {
 }
 
 button{
-    padding-inline: 10px;
+    padding-inline: 15px;
     font-size: 1rem;
     border: none;
     min-height: 50px;
+    border-radius: 10px;
 }
 
 .delete-button{
     background-color: red;
+
+}
+
+.list-row .delete-button {
+    border-radius: 0 20px 20px 0;
 }
 
 .circle-container{
@@ -106,7 +122,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-inline: 10px;
+    padding-inline: 15px;
     border-right: 1px solid lightgrey;
 }
 
@@ -129,6 +145,7 @@ button{
     height: 100dvh;
     position: fixed;
     top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,12 +181,14 @@ button{
 }
 
 .add-button {
-    background-color: green;
-    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+   
+    color: white;
 
 }
 
 .done{
     text-decoration: line-through;
 }
+
 
